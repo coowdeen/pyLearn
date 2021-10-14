@@ -91,13 +91,14 @@ def pascalsTriangleValue(row, col):
     # Also: it may help to read MathIsFun's Pascal's Triangle page, which 
     # includes a general discussion, some nice applications, and further down 
     # the page a helpful formula.
-    if(row < 0 or col < 0 or col > row):
-        return None
-
     def fac(n):
         return math.factorial(n)
+
+    if(row < 0 or col < 0 or col > row):
+        return None
+    else:
+        asw = fac(row) / (fac(col) * fac((row - col)))
     
-    asw = fac(row) / (fac(col) * fac((row - col)))
     return asw
 
 def getKthDigit(n, k):
@@ -105,7 +106,11 @@ def getKthDigit(n, k):
     # and a non-negative int k, and returns the kth digit of n, starting from 0,
     # counting from the right.
 
-    if()
+    if(k < 0):
+        return None
+    else:
+        return int(abs(n) / (10**k)) % 10
+
     return 42
 
 def setKthDigit(n, k, d):
@@ -340,7 +345,7 @@ def testAll():
     testGetInRange()
     testEggCartons()
     testPascalsTriangleValue()
-  #  testGetKthDigit()
+    testGetKthDigit()
   #  testSetKthDigit()
     # Part B:
   #  testNearestOdd()
