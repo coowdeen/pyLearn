@@ -101,6 +101,9 @@ def pascalsTriangleValue(row, col):
     return asw
 
 def getKthDigit(n, k):
+    # Write the function getKthDigit(n, k) that takes a possibly-negative int n 
+    # and a non-negative int k, and returns the kth digit of n, starting from 0,
+    # counting from the right.
     return 42
 
 def setKthDigit(n, k, d):
