@@ -104,6 +104,8 @@ def getKthDigit(n, k):
     # Write the function getKthDigit(n, k) that takes a possibly-negative int n 
     # and a non-negative int k, and returns the kth digit of n, starting from 0,
     # counting from the right.
+
+    if()
     return 42
 
 def setKthDigit(n, k, d):
