@@ -1,7 +1,7 @@
 #################################################
 # hw1.py
-# name:
-# andrew id:
+# name: Owen
+# andrew id: None lol
 #################################################
 
 import cs112_f21_week1_linter
@@ -22,6 +22,7 @@ def roundHalfUp(d): #helper-fn
     # See other rounding options here:
     # https://docs.python.org/3/library/decimal.html#rounding-modes
     return int(decimal.Decimal(d).to_integral_value(rounding=rounding))
+
 
 #################################################
 # Part A
@@ -111,17 +112,37 @@ def getKthDigit(n, k):
     else:
         return int(abs(n) / (10**k)) % 10
 
-    return 42
-
 def setKthDigit(n, k, d):
-    return 42
+    # Write the function setKthDigit(n, k, d) that takes three integers -- n, k,
+    # and d -- where n is a possibly-negative int, k is a non-negative int, and
+    # d is a non-negative single digit (between 0 and 9 inclusive). 
+    # This function returns the number n with the kth digit replaced with d. 
+    # Counting starts at 0 and goes right-to-left, so the 0th digit is the 
+    # rightmost digit.
+    if(k < 0):
+        return None
+    elif(d > 9 or d < 0):
+        return None
+    else:
+        return 
 
 #################################################
 # Part B
 #################################################
         
 def nearestOdd(n):
-    return 42
+    # Write the function nearestOdd(n) that takes an int or float n, and returns
+    # as an int value the nearest odd number to n. In the case of a tie, return 
+    # the smaller odd value. Note that the result must be an int, 
+    # so nearestOdd(13.0) is the int 13, and not the float 13.0.
+    if(n % 2 == 0):
+        return int(n - 1)
+    elif(roundHalfUp(n) - n > 0):
+        return int(roundHalfUp(n) - 1)
+    elif(roundHalfUp(n) - n < 0):
+        return int(roundHalfUp(n) + 1)
+    else:
+        return int(n)
 
 def numberOfPoolBalls(rows):
     return 42
@@ -346,9 +367,9 @@ def testAll():
     testEggCartons()
     testPascalsTriangleValue()
     testGetKthDigit()
-  #  testSetKthDigit()
+   # testSetKthDigit()
     # Part B:
-  #  testNearestOdd()
+    testNearestOdd()
   #  testNumberOfPoolBalls()
   #  testNumberOfPoolBallRows()
    # testColorBlender()
