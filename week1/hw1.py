@@ -145,13 +145,88 @@ def nearestOdd(n):
         return int(n)
 
 def numberOfPoolBalls(rows):
-    return 42
+    # Pool balls are arranged in rows where the first row contains 1 pool ball 
+    # and each row contains 1 more pool ball than the previous row. Thus, for 
+    # example, 3 rows contain 6 total pool balls (1+2+3). With this in mind, 
+    # write the function numberOfPoolBalls(rows) that takes a non-negative int 
+    # value, the number of rows, and returns another int value, the number of 
+    # pool balls in that number of full rows. For example, numberOfPoolBalls(3) 
+    # returns 6. We will not limit our analysis to a "rack" of 15 balls. Rather,
+    # our pool table can contain an unlimited number of rows. For this problem 
+    # and the next, you should research Triangular Numbers.
+    if(rows < 0):
+        return None
+    else:
+        return (rows * (rows + 1)) / 2
 
 def numberOfPoolBallRows(balls):
-    return 42
+    # This problem is the inverse of the previous problem. Write the function 
+    # numberOfPoolBallRows(balls) that takes a non-negative int number of pool 
+    # balls, and returns the smallest int number of rows required for the given 
+    # number of pool balls. Thus, numberOfPoolBallRows(6) returns 3. Note that 
+    # if any balls must be in a row, then you count that row, and so 
+    # numberOfPoolBallRows(7) returns 4 (since the 4th row must have a single 
+    # ball in it).
+    if(balls < 0):
+        return None
+    else:
+        return 
 
 def colorBlender(rgb1, rgb2, midpoints, n):
-    return 42
+    # step1: get target R,G,B from rgb1
+    targetR = roundHalfUp(rgb2 / 10**6)
+    targetG = roundHalfUp((rgb2 / 10**3) % 1000)
+    targetB = roundHalfUp(rgb2  % 1000)
+
+    R = roundHalfUp(rgb1 / 10**6)
+    G = roundHalfUp((rgb1 / 10**3) % 1000)
+    B = roundHalfUp(rgb1  % 1000)
+
+    if(n < 0):
+        return None
+    elif(n > midpoints + 1):
+        return None
+    else:
+        if(targetR > R):
+            incrementR = (targetR - R) / (midpoints + 1)
+            resultR = R + incrementR * n
+            if(resultR > targetR):
+                resultR = targetR
+        elif(targetR == R):
+            resultR = targetR
+        else:
+            incrementR = abs(targetR - R) / (midpoints + 1)
+            resultR = R - incrementR * n
+
+        if(targetG > G):
+            incrementR = (targetG - G) / (midpoints + 1)
+            resultG = G + incrementR * n
+            if(resultG > targetG):
+                resultG = targetG
+        elif(targetG == G):
+            resultG = targetG
+        else:
+            incrementG = abs(targetG - G) / (midpoints + 1)
+            resultG = G - incrementG * n
+
+        if(targetB > B):
+            incrementB = (targetB - B) / (midpoints + 1)
+            resultB = B + incrementB * n
+            if(resultB > targetB):
+                resultB = targetB
+        elif(targetB == B):
+            resultB = targetB
+        else:
+            incrementB = abs(targetB - B) / (midpoints + 1)
+            resultB = B - incrementB * n
+
+    resultR = roundHalfUp(resultR)*10**6
+    resultG = roundHalfUp(resultG)*10**3
+    resultB = roundHalfUp(resultB)
+    
+    return resultR + resultG + resultB
+
+    
 
 #################################################
 # Bonus/Optional
@@ -370,9 +445,9 @@ def testAll():
    # testSetKthDigit()
     # Part B:
     testNearestOdd()
-  #  testNumberOfPoolBalls()
+    testNumberOfPoolBalls()
   #  testNumberOfPoolBallRows()
-   # testColorBlender()
+    testColorBlender()
     # Bonus:
     # testBonusPlayThreeDiceYahtzee()
     # testBonusFindIntRootsOfCubic()
