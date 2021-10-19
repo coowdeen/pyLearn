@@ -2,6 +2,8 @@
 # hw1.py
 # name: Owen
 # andrew id: None lol
+# some of the description of practices is too long to be copied to here
+# find all of the descriptions here: https://www.cs.cmu.edu/~112/notes/hw1.html
 #################################################
 
 import cs112_f21_week1_linter
