@@ -184,9 +184,7 @@ def colorBlender(rgb1, rgb2, midpoints, n):
     G = roundHalfUp((rgb1 / 10**3) % 1000)
     B = roundHalfUp(rgb1  % 1000)
 
-    if(n < 0):
-        return None
-    elif(n > midpoints + 1):
+    if(n < 0 or n > midpoints + 1):
         return None
     else:
         if(targetR > R):
