@@ -37,7 +37,7 @@ def digitCount(n):
     # remove the ones digit until you cannot.
     digit = 0
     n = abs(n)
-    if (n == 0): return 1
+    if (n == 0): return 1 #hardcode也不是什么坏事
     while(n):
         digit += 1
         n = n // 10
