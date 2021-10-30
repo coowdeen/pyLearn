@@ -826,7 +826,7 @@ print(sumToN(5) == 0+1+2+3+4+5)
 **What if we add a third parameter?**
 
 ```python
-def sumEveryKthFromMToN(m, n, k):
+def sumEveryKthFromMToN(m, n, k):# n is not included in the loop
     total = 0
     # the third parameter becomes a step
     for x in range(m, n+1, k):
@@ -1187,3 +1187,15 @@ print(nthPrime(5))
 Locals():Update and return a dictionary representing the current local symbol table. Free variables are returned by [`locals()`](dfile:///Users/owenxu/Library/Application Support/Dash/DocSets/Python_3/Python 3.docset/Contents/Resources/Documents/doc/library/functions.html#locals) when it is called in function blocks, but not in class blocks. Note that at the module level, [`locals()`](dfile:///Users/owenxu/Library/Application Support/Dash/DocSets/Python_3/Python 3.docset/Contents/Resources/Documents/doc/library/functions.html#locals) and [`globals()`](dfile:///Users/owenxu/Library/Application Support/Dash/DocSets/Python_3/Python 3.docset/Contents/Resources/Documents/doc/library/functions.html#globals) are the same dictionary.
 
 ## Code Tracing
+
+## Homework
+
+```python
+#these are the same!
+temp = x
+x = y
+y = temp % y
+
+x,y = y, x%y 
+```
+
