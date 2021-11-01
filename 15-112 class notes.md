@@ -1199,3 +1199,58 @@ y = temp % y
 x,y = y, x%y 
 ```
 
+# Week 3
+
+Strings, grapics
+
+## String Literals
+
+### 1. Four kinds of quotes
+
+```python
+# Quotes enclose characters to tell Python "this is a string!"
+# single-quoted or double-quoted strings are the most common
+print('single-quotes')
+print("double-quotes")
+
+# triple-quoted strings are less common (though see next section for a typical use)
+print('''triple single-quotes''')
+print("""triple double-quotes""")
+
+# The reason we have multiple kinds of quotes is partly so we can have strings like:
+print('The professor said "No laptops in class!" I miss my laptop.')
+```
+
+### 2. New lines in string
+
+```python
+# A character preceded by a backslash, like \n, is an 'escape sequence'.
+# Even though it looks like two characters, Python treats it as one special character.
+
+# Note that these two print statements do the same thing!
+print("abc\ndef")  # \n is a single newline character.
+print("""abc
+def""")
+
+print("""\
+You can use a backslash at the end of a line in a string to exclude
+the newline after it. This should almost never be used, but one good
+use of it is in this example, at the start of a multi-line string, so
+the whole string can be entered with the same indentation (none, that is).
+""")
+```
+
+### 3. More escape sequence
+
+```python
+print("Double-quote: \"")
+print("Backslash: \\")
+print("Newline (in brackets): [\n]")
+print("Tab (in brackets): [\t]")
+
+print("These items are tab-delimited, 3-per-line:")
+print("abc\tdef\tg\nhi\tj\\\tk\n---")
+```
+
+
+
