@@ -1252,5 +1252,466 @@ print("These items are tab-delimited, 3-per-line:")
 print("abc\tdef\tg\nhi\tj\\\tk\n---")
 ```
 
+### 4.repr() vs. print()
 
+有时候字符串很难debug，两个相似的字符串很有可能实现代码是不一样的。
+
+repr()相当于print的正式形式，向我们展示串中的数据
+
+Print()比较偏向于产生一个输出
+
+这点不同在debug的时候很有用
+
+```python
+print("These look the same when we print them!")
+s1="abc\tdef"
+s2="abc  def"
+
+print("print s1: ",s1)
+print("print s2: ",s2)
+
+print("\nThey aren't really though...")
+print("s1==s2?", s1==s2)
+
+print("\nLet's try repr instead")
+print("repr s1: ",repr(s1))
+print("repr s2: ",repr(s2))
+
+print("\nHere's a sneaky one")
+s1="abcdef"
+s2="abcdef             \t"
+
+print("print s1: ",s1)
+print("print s2: ",s2)
+
+print("s1==s2?", s1==s2)
+
+print("repr s1: ",repr(s1))
+print("repr s2: ",repr(s2))
+print("repr() lets you see the spaces^^^")
+```
+
+### 5. String Literals as Multi-line comments
+
+```python
+"""
+python中没有多行注释符号，但是可以用顶级多行串的定义形式来做注释。技术上来说python这不是一块注释，在python运行的时候这条串会被读取随后被忽略然后进行垃圾回收
+
+Python does not have multiline comments, but you can do something similar
+by using a top-level multiline string, such as this. Technically, this is
+not a comment, and Python will evaluate this string, but then ignore it
+and garbage collect it!
+"""
+print("Wow!")
+```
+
+## Some string constants
+
+```python
+import string
+print(string.ascii_letters)   # abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+print(string.ascii_lowercase) # abcdefghijklmnopqrstuvwxyz
+print("-----------")
+print(string.ascii_uppercase) # ABCDEFGHIJKLMNOPQRSTUVWXYZ
+print(string.digits)          # 0123456789
+print("-----------")
+print(string.punctuation)     # '!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'
+print(string.printable)       # digits + letters + punctuation + whitespace
+print("-----------")
+print(string.whitespace)      # space + tab + linefeed + return + ...
+```
+
+## Some String Operators
+
+### 1. Sting + and *
+
+```python
+print("abc" + "def")  # What do you think this should do?
+print("abc" * 3)  # How many characters do you think this prints?
+print("abc" + 3)  # ...will this give us an error? (Yes)
+```
+
+### 2. The in operator
+
+in 可以判断后串是否包含前串
+
+```python
+# The "in" operator is really really useful!
+print("ring" in "strings")
+print("wow" in "amazing!")
+print("Yes" in "yes!")
+print("" in "No way!")
+```
+
+## String indexing and slicing
+
+#### 1. Indexing a single character
+
+```python
+# Indexing lets us find a character at a specific location (the index)
+s = "abcdefgh"
+print(s)
+print(s[0])
+print(s[1])
+print(s[2])
+
+print("-----------")
+print("Length of ",s,"is",len(s))
+
+print("-----------")
+print(s[len(s)-1])
+print(s[len(s)])  # crashes (string index out of range)
+```
+
+#### 2. Negative indexes
+
+```python
+s = "abcdefgh"
+print(s)
+print(s[-1]) #倒数第一个
+print(s[-2]) #倒数第二个
+```
+
+#### 3. Slicing a range of characters
+
+```python
+# Slicing is like indexing, but it lets us get more than 1 character.
+# ...how is this like range(a,b)?
+
+s = "abcdefgh"
+print(s)
+print(s[0:3]) #不包括s[3]
+print(s[1:3])
+print("-----------")
+print(s[2:3])
+print(s[3:3]) #空
+```
+
+#### 4. Slicing with default parameters
+
+```python
+s = "abcdefgh"
+print(s)
+print(s[3:])
+print(s[:3])
+print(s[:]) #全部
+```
+
+#### 5. Slicing with a step parameter
+
+带有步长的分块
+
+```python
+print("This is not as common, but perfectly ok.")
+s = "abcdefgh"
+print(s)
+print(s[1:7:2])
+print(s[1:7:3])
+```
+
+#### 6. Reversing a string
+
+其实可以利用slicing来直接实现串的反转，但是还是另外写一个function比较直观
+
+```python
+s = "abcdefgh"
+
+print("This works, but is confusing:")
+print(s[::-1])
+
+print("This also works, but is still confusing:")
+print("".join(reversed(s)))
+
+print("Best way: write your own reverseString() function:")
+
+def reverseString(s):
+    return s[::-1]
+
+print(reverseString(s)) # crystal clear!
+```
+
+## Looping over strings
+
+#### 1. for loop with indexes
+
+```python
+s = "abcd"
+for i in range(len(s)): 
+    print(i, s[i])
+```
+
+#### 2. for loop without indexes
+
+```python
+s = "abcd"
+for c in s:
+    print(c)
+```
+
+#### 3. "for" loop with split
+
+```python
+# By itself, names.split(",") produces something called a list.
+# 相当于设定一个分隔符
+
+names = "fred,wilma,betty,barney"
+for name in names.split(","):
+    print(name)
+```
+
+#### 4. For loop with splitlines
+
+```python
+# splitlines() also makes a list, so only loop over its results,
+# just like split():
+# 就是一行行的split
+# quotes from brainyquote.com
+quotes = """\
+Dijkstra: Simplicity is prerequisite for reliability.
+Knuth: If you optimize everything, you will always be unhappy.
+Dijkstra: Perfecting oneself is as much unlearning as it is learning.
+Knuth: Beware of bugs in the above code; I have only proved it correct, not tried it.
+Dijkstra: Computer science is no more about computers than astronomy is about telescopes.
+"""
+for line in quotes.splitlines():
+    if (line.startswith("Knuth")):
+        print(line)
+```
+
+#### 5. An example: isPalindrome
+
+```python
+# There are many ways to write isPalindrome(s)
+# Here are several.  Which way is best?
+
+def reverseString(s):
+    return s[::-1]
+
+def isPalindrome1(s): #需要新建一个串消耗资源，但是简单易懂
+    return (s == reverseString(s))
+
+def isPalindrome2(s): 
+    for i in range(len(s)):
+        if (s[i] != s[len(s)-1-i]): #正index
+            return False
+    return True
+
+def isPalindrome3(s):
+    for i in range(len(s)):
+        if (s[i] != s[-1-i]): #负index
+            return False
+    return True
+
+def isPalindrome4(s):
+    while (len(s) > 1):
+        if (s[0] != s[-1]):
+            return False
+        s = s[1:-1] #每一轮都除去已经比较过的字母
+    return True
+
+print(isPalindrome1("abcba"), isPalindrome1("abca"))
+print(isPalindrome2("abcba"), isPalindrome2("abca"))
+print(isPalindrome3("abcba"), isPalindrome3("abca"))
+print(isPalindrome4("abcba"), isPalindrome4("abca"))
+```
+
+#### 6. Strings are immutable
+
+you cannot change strings! 
+
+```python
+s = "abcde"
+s[2] = "z"  # Error! Cannot assign into s[i]
+```
+
+must create a new string
+
+```python
+s = "own"
+s = s[:2] + "e" + s[2:]
+print(s) #owen
+```
+
+#### 7. Strings and Aliases
+
+```python
+s = 'abc'  # s references the string 'abc'
+t = s      # t is an alias to the one-and-only string 'abc'
+s += 'def'
+print(s) #abcdef
+print(t) #abc 因为t只是对串'abc'的引用，而不是s
+```
+
+#### 8. Some string-related Built-in Fcuntions
+
+##### 1. Str() and len()
+
+Str(): 建立一个string
+
+len(): 获得一个串的长度
+
+```python
+name = input("Enter your name: ")
+print("Hi, " + name + ". Your name has " + str(len(name)) + " letters!")
+```
+
+##### 2. chr() and ord()
+
+ord(): 返回字符的Unicode编码
+
+chr(): 返回Unicode编码代表的字符
+
+```python
+print(ord("A")) # 65
+print(chr(65))  # "A"
+print(chr(ord("A")+1)) # ?
+```
+
+##### 3. eval()
+
+eval():可以计算一个数学表达式，但是有可能出现以下错误
+
+```python
+# eval() works but you should not use it!
+s = "(3**2 + 4**2)**0.5"
+print(eval(s))
+
+# why not? Well...
+s = "reformatMyHardDrive()"
+print(eval(s)) # no such function!  But what if there was?
+```
+
+#### 9. Some String Methods
+
+Methods are a special type of function that we call "on" a value, like a string. You can tell it's a method because the syntax is in the form of value.function(), like s.islower() in the code below.
+
+##### 1. **Character types: isalnum(), isalpha(), isdigit(), islower(), isspace(), isuppe**
+
+字符类型
+
+```python
+# Run this code to see a table of isX() behaviors
+def p(test):
+    print("True     " if test else "False    ", end="")
+def printRow(s):
+    print(" " + s + "  ", end="")
+    p(s.isalnum())
+    p(s.isalpha())
+    p(s.isdigit())
+    p(s.islower())
+    p(s.isspace())
+    p(s.isupper())
+    print()
+def printTable():
+    print("  s   isalnum  isalpha  isdigit  islower  isspace  isupper")
+    for s in "ABCD,ABcd,abcd,ab12,1234,    ,AB?!".split(","):
+        printRow(s)
+printTable()
+```
+
+##### 2. String edits: lower(), upper(), replace(), strip()
+
+```python
+print("This is nice. Yes!".lower())
+print("So is this? Sure!!".upper())
+print("   Strip removes leading and trailing whitespace only    ".strip())
+print("This is nice.  Really nice.".replace("nice", "sweet"))
+print("This is nice.  Really nice.".replace("nice", "sweet", 1)) # count = 1
+
+print("----------------")
+s = "This is so so fun!"
+t = s.replace("so ", "")
+print(t)
+print(s) # note that s is unmodified (strings are immutable!)
+```
+
+##### 3. Substring search: count(), startswith(), endswith(), find(), index()
+
+```python
+print("This is a history test".count("is")) # 3
+print("This IS a history test".count("is")) # 2
+print("-------")
+print("Dogs and cats!".startswith("Do"))    # True
+print("Dogs and cats!".startswith("Don't")) # False
+print("-------")
+print("Dogs and cats!".endswith("!"))       # True
+print("Dogs and cats!".endswith("rats!"))   # False
+print("-------")
+print("Dogs and cats!".find("and"))         # 5
+print("Dogs and cats!".find("or"))          # -1
+print("-------")
+print("Dogs and cats!".index("and"))        # 5
+print("Dogs and cats!".index("or"))         # crash!
+```
+
+#### 10. String formating
+
+#### 11. String formatting with f strings
+
+```python
+# We saw this example back in week1!
+# It shows a nice relatively new way to format strings:
+
+x = 42
+y = 99
+# Place variable names in {squiggly braces} to print their values, like so:
+print(f'Did you know that {x} + {y} is {x+y}?')
+```
+
+#### 12. Basic File IO
+
+```python
+# Note: As this requires read-write access to your hard drive,
+#       this will not run in the browser in Brython.
+
+def readFile(path):
+    with open(path, "rt") as f: # with statement allows python to close 
+    		return f.read()					#	the file cleanly if it fails to open 
+
+def writeFile(path, contents):
+    with open(path, "wt") as f:
+        f.write(contents)
+
+contentsToWrite = "This is a test!\nIt is only a test!"
+writeFile("foo.txt", contentsToWrite)
+
+contentsRead = readFile("foo.txt")
+assert(contentsRead == contentsToWrite)
+
+print("Open the file foo.txt and verify its contents.")
+```
+
+## Graphics
+
+
+
+## **15-112 Style Rubric**
+
+### Clarity Rules
+
+#### Ownership
+
+You must include your name, andrewId, and section in a comment at the top of every file you submit.
+
+#### Comments
+
+You should write concise, clear, and informative comments that make your code even easier to understand.
+
+- Comments should be included with any piece of code that is not self-documenting.
+- Comments should also be included at the start of every function (including helper functions).
+- Comments should *not* be written where they are not needed.
+
+**5-point error:** not writing any comments at all.
+**2-point error:** writing too many or too few comments, or writing bad comments.
+
+eg:
+
+```python
+# return True if the characters are identical at forward and reversed indices 
+def isPalindrome3(s):
+    for i in range(len(s)):
+        if (s[i] != s[-1-i]):
+            return False
+    return True
+```
 
