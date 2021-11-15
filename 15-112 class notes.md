@@ -1585,7 +1585,7 @@ print(eval(s)) # no such function!  But what if there was?
 
 Methods are a special type of function that we call "on" a value, like a string. You can tell it's a method because the syntax is in the form of value.function(), like s.islower() in the code below.
 
-##### 1. **Character types: isalnum(), isalpha(), isdigit(), islower(), isspace(), isuppe**
+##### 1. **Character types: isalnum(), isalpha(), isdigit(), islower(), isspace(), isupper()**
 
 字符类型
 
@@ -1714,4 +1714,8 @@ def isPalindrome3(s):
             return False
     return True
 ```
+
+
+
+
 
