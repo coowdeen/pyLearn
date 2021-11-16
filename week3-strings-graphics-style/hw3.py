@@ -149,7 +149,7 @@ def patternedMessage(msg, pattern):
     normMsg = msgNormalize(msg)# remove whitespace in the message
     length = len(normMsg)
     count = 0# marks the position of character in the normMsg
-    flag = -1# add "\n" at the end of the output string if its not 0
+    flag = -1# add "\n" at the end of each line of the output string if not 0
 
     for line in pattern.splitlines():# get the number of lines of the pattern
         if(line.isspace() or line == "" or line =="\n"):
