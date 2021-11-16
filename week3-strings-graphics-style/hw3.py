@@ -120,10 +120,55 @@ def topScorer(data):
 
 # replace whitesplace (\t, \n) with single space without using s.replace()
 def collapseWhitespace(s):
-    return 42
+    newS = ""
+    flag = 0
+    for x in s:
+        if (x.isspace()):
+            flag += 1
+        else:
+            flag = 0
+            newS += x
+        if (flag == 1):
+            newS += " "
+    return newS
 
+# a helper function to remove the whitespace in message
+def msgNormalize(msg):
+    normMsg = ""
+    for s in msg:
+        if(s.isspace()):
+            continue
+        else:
+            normMsg += s
+    return normMsg
+
+# returns a string produced by replacing the non-whitespace characters in the 
+# pattern with the non-whitespace characters in the message
 def patternedMessage(msg, pattern):
-    return 42
+    newS = ""
+    normMsg = msgNormalize(msg)# remove whitespace in the message
+    length = len(normMsg)
+    count = 0# marks the position of character in the normMsg
+    flag = -1# add "\n" at the end of the output string if its not 0
+
+    for line in pattern.splitlines():# get the number of lines of the pattern
+        if(line.isspace() or line == "" or line =="\n"):
+            continue
+        else:
+            flag += 1
+    
+    for line in pattern.splitlines():
+        for s in line:
+            if(s.isspace()):
+                newS += " "
+            else:
+                newS += normMsg[count]
+                count += 1
+                count %= length# keeping the count in string index range
+        if(flag != 0 and not line.isspace() and line != ""):
+            newS += "\n"
+            flag -= 1
+    return newS
 
 def encodeRightLeftRouteCipher(text, rows):
     return 42
