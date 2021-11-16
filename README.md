@@ -6,5 +6,6 @@ Schedule, notes and homework can be found here: https://www.cs.cmu.edu/~112/sche
 
 Each weely folder includes homework code files
 
-Note that some of the description of practices is too long to be copied to code files
+Note that some of the practices description is too long to be copied into code files
+
 Full description can be found on CMU 15-112 schedule page
