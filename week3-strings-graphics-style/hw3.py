@@ -170,8 +170,33 @@ def patternedMessage(msg, pattern):
             flag -= 1
     return newS
 
-def encodeRightLeftRouteCipher(text, rows):
-    return 42
+# a helper function for getting index out of row and col
+def getIndex(row, col, totalRow):
+    index = (col) * totalRow + (row)
+    return index
+
+def encodeRightLeftRouteCipher(message, rows):
+    length = len(message)
+    cols = math.ceil(length / rows)
+    padding = cols*rows - length
+    newS = ""
+    flag = 1
+
+    if(padding > 0):# add padding to message if matrix is not full
+        for i in range(padding):
+            message += chr(122 - i)
+
+    for row in range(rows):
+        if(flag > 0):
+            for col in range(cols):
+                i = getIndex(row, col, rows)
+                newS += message[i]
+        else:
+            for col in range(cols-1,-1,-1):
+                i = getIndex(row, col, rows)
+                newS += message[i]
+        flag *= -1
+    return str(rows) + newS
 
 def decodeRightLeftRouteCipher(cipher):
     return 42
