@@ -180,7 +180,7 @@ def encodeRightLeftRouteCipher(message, rows):
     cols = math.ceil(length / rows)
     padding = cols*rows - length
     newS = ""
-    flag = 1
+    flag = 1# controls traverse direction
 
     if(padding > 0):# add padding to message if matrix is not full
         for i in range(padding):
