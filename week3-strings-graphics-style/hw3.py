@@ -175,6 +175,10 @@ def getIndex(row, col, totalRow):
     index = (col) * totalRow + (row)
     return index
 
+# imagine a 2-d matrix with message lying in column first order
+# find the patterns in the row, col and the corresponding index of each charact-
+# er (the getIndex() function above)
+# traverse with every other row going in different diraction(left->right first)
 def encodeRightLeftRouteCipher(message, rows):
     length = len(message)
     cols = math.ceil(length / rows)
@@ -198,8 +202,45 @@ def encodeRightLeftRouteCipher(message, rows):
         flag *= -1
     return str(rows) + newS
 
+def getCipherLen(cipher):# a helper function for getting cols out of cipher
+    length = 0
+    for s in cipher:
+        if(s.isalpha() and s.isupper()):
+            length += 1
+    return length
+
+# a function for decoding right-left cipher
+# imagine a 2-d matrix with the number of rows indicated as in the first number 
+# of the cipher 
+# first get every row of the cipher back in left->right order
+# traverse with column first
 def decodeRightLeftRouteCipher(cipher):
-    return 42
+    message = ""
+    temp = ""
+    rows = int(cipher[0])
+    length = getCipherLen(cipher)
+    cols = math.ceil(length / rows)
+    flag = 0# controls the direction of traverse, odd number for right->left
+        
+    i = 0
+    while(i < len(cipher) - 1):
+        if (flag%2 != 0):
+            for j in range(i+cols-1, i-1, -1):
+                temp += cipher[j+1]
+            flag += 1
+            i = i+cols
+        else:
+            temp += cipher[i+1]
+            i += 1
+            if (i % cols == 0):
+                flag += 1
+    
+    for col in range(cols):
+        for row in range(rows):
+            if (temp[col+row*cols].isupper()):
+                message += temp[col+row*cols]
+
+    return message
 
 #################################################
 # Part B Drawings
