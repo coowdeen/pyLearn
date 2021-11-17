@@ -222,24 +222,24 @@ def decodeRightLeftRouteCipher(cipher):
     cols = math.ceil(length / rows)
     flag = 0# controls the direction of traverse, odd number for right->left
         
-    i = 0
+    i = 0# as a pointer for traversing the cipher string
     while(i < len(cipher) - 1):
+        # if flag is a odd number, traverse the row in right->left order
         if (flag%2 != 0):
-            for j in range(i+cols-1, i-1, -1):
-                temp += cipher[j+1]
+            for j in range(i + cols-1, i-1, -1):
+                temp += cipher[j + 1]
             flag += 1
-            i = i+cols
+            i = i + cols
         else:
-            temp += cipher[i+1]
+            temp += cipher[i + 1]
             i += 1
             if (i % cols == 0):
                 flag += 1
     
     for col in range(cols):
         for row in range(rows):
-            if (temp[col+row*cols].isupper()):
+            if (temp[col + row*cols].isupper()):
                 message += temp[col+row*cols]
-
     return message
 
 #################################################
