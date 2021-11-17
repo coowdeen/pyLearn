@@ -178,7 +178,7 @@ def getIndex(row, col, totalRow):
 # imagine a 2-d matrix with message lying in column first order
 # find the patterns in the row, col and the corresponding index of each charact-
 # er (the getIndex() function above)
-# traverse with every other row going in different diraction(left->right first)
+# traverse with every other row going in different directions(left->right first)
 def encodeRightLeftRouteCipher(message, rows):
     length = len(message)
     cols = math.ceil(length / rows)
