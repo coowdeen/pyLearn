@@ -98,7 +98,7 @@ def destructiveRemoveRepeats(L):
 def isSorted(L):
     if (len(L) == 0 or len(L) == 1):
         return True
-    sorted = 0# if
+    sorted = 0
     i = 0
     while (i + 1 <= len(L) - 1):
         if (L[i] == L[i+1]):# if equal pop the element, index stays unchanged
@@ -117,8 +117,30 @@ def isSorted(L):
     else:
         return False
 
+# Takes a list of numbers and returns a list opf numbers the results from "read-
+# ing off" the initial list using the look-and-say method, use tuples for each 
+# (count, value) pair, for example:
+#   lookAndSay([]) == []
+#   lookAndSay([1,1,1]) == [(3,1)]
+#   lookAndSay([-1,2,7]) == [(1,-1),(1,2),(1,7)]
+#   lookAndSay([3,3,8,-10,-10,-10]) == [(2,3),(1,8),(3,-10)]
+#   lookAndSay([3,3,8,3,3,3,3]) == [(2,3),(1,8),(4,3)]
 def lookAndSay(L):
-     return 42
+    if (len(L) == 0):# return [] if list is empty
+        return L
+    i = 0
+    result = []
+    while (i <= len(L) - 1):
+        value = L[i]
+        count = 0
+        while (L[i] == value):
+            count += 1
+            i += 1
+            if (i > len(L) - 1):
+                i += 1
+                break
+        result.append((count, value))
+    return result
 
 def inverseLookAndSay(L):
     return 42
