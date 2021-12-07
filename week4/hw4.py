@@ -92,9 +92,30 @@ def destructiveRemoveRepeats(L):
 #################################################
 # Part B
 #################################################
-
+# takes a list of numbers and returns True if the list is sorted(either smallest
+# first or largest first) and False otherwise, must consider each value in the 
+# list once O(n)
 def isSorted(L):
-    return 42
+    if (len(L) == 0 or len(L) == 1):
+        return True
+    sorted = 0# if
+    i = 0
+    while (i + 1 <= len(L) - 1):
+        if (L[i] == L[i+1]):# if equal pop the element, index stays unchanged
+            L.pop(i)
+        elif (L[i] > L[i+1]):
+            sorted += 1
+            i+=1
+        else:
+            sorted -= 1
+            i+=1
+    # if the number of sourted elements equals the length of the list then the
+    # list is sourted, "sorted" starts at 0 hence increment by one for comparis-
+    # on
+    if abs(sorted)+1 == len(L):
+        return True
+    else:
+        return False
 
 def lookAndSay(L):
      return 42
